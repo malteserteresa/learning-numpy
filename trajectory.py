@@ -29,7 +29,7 @@ def f(x):
 
 
 def test_constant():
-    assert 1/(v0*2) == 0.1
+    assert 1/(2*v0**2) == 0.02
 
 
 
