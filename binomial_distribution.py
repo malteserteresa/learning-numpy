@@ -1,19 +1,29 @@
 import numpy as np
 
 def probability_density(p, r, n):
-    """ Probability density of binomial distribution where p = likelihood of success, n number of successes r number of trials
+    """Probability density of binomial distribution.
+
+
+    Args:
+        p (float): likelihood of success
+        r (int) : number of trials
+        n (int) : number of successes
+
+    Returns:
+        float : likelihood of event occuring
+
     """
     return round(nCr(n, r)*p**r*(1-p)**(n-r), 4)
 
 
 def nCr(n, r):
-    """ Gives the n objects, how many combinations of size r can be made
+    """Gives the n objects, how many combinations of size r can be made
     """
     return int(np.math.factorial(n)/(np.math.factorial(r)*np.math.factorial(n-r)))
 
 
 def test_combinations():
-    """ Given a deck of 52 playing cards, how many different hands can I have with 5 cards
+    """
     """
     assert nCr(52, 5) == 2598960
 
