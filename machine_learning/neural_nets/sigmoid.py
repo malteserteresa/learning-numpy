@@ -1,8 +1,7 @@
 import numpy as np
 
 def sigmoid(x, derivative=False):
-    """ The activation function for the output layer of the neural net
-    """
+    """The activation function for the output layer of the neural net."""
     return x*(1-x) if derivative else 1/(1+np.exp(-x))
 
 def test_sigmoid():
