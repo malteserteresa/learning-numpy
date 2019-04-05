@@ -30,12 +30,12 @@ def test_combinations_cards():
 
 
 def pascals_triangle(order):
-    """Prints next line of pascals triangle.
+    """Returns the values of Pascals triangle as a nest list.
 
     Args:
-        list : The next row following the given row
+        list : Order of the desired row of pascals triangle.
     Returns:
-        nested list : the values of pascals triangle as a nested list
+        Nested list : the values of pascals triangle.
     """
     triangle = []
     for o in range(0, order + 1):
