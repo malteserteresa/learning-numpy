@@ -1,65 +1,61 @@
-# Pascals triangle
+import numpy as np
 
-def pascals_triangle(previous_row):
+
+def nCr(n, r):
+    """Gives the number of combinations with n options when selecting r choices. (N choose r)
+
+    An example.
+
+    Args:
+        n (int) : The number of events
+        r (int) : The number of outcomes of the event
+    Returns:
+         int : the number of combinations of that event occurring within the sample space
+
+    """
+    return int(np.math.factorial(n) / (np.math.factorial(r) * np.math.factorial(n - r)))
+
+
+def test_combinations_coin():
+    """Given 5 flips of a fair coin, I only get 2 HEADs. How many different combinations of this could I get?"""
+    assert nCr(5, 2) == 10
+
+def test_combinations_cards():
+    """A deck of cards has 52 cards in it. A poker hand is made up of 5 cards. How many different combinations of hands
+     could I get?
+
+     """
+    assert nCr(52, 5) == 2598960
+
+
+
+def pascals_triangle(order):
     """Prints next line of pascals triangle.
 
     Args:
         list : The next row following the given row
-
+    Returns:
+        nested list : the values of pascals triangle as a nested list
     """
-    middle_idx = get_middle(previous_row)
+    triangle = []
+    for o in range(0, order + 1):
+        coeff = []
+        for n in range(0, o + 1):
+            coeff.append(nCr(o, n))
+        triangle.append(coeff)
 
-    if (len(middle_idx) == 2):
-        row = create_coefficients(previous_row[:middle_idx[1]])
-        return row + [previous_row[middle_idx[1]] * 2] + row[::-1]
-    else:
-        row = create_coefficients(previous_row[:middle_idx[0]])
-        middle = [row[-1] * 2]
-        return row + middle + middle + row[::-1]
+    return triangle
 
-
-def test_even():
-    assert pascals_triangle([1, 3, 3, 1]) == [1, 4, 6, 4, 1]
+def test_zeroth_order():
+    assert pascals_triangle(0) == [[1]]
 
 
-def test_odd():
-    assert pascals_triangle([1, 4, 6, 4, 1]) == [1, 5, 10, 10, 5, 1]
+def test_first_order():
+    assert pascals_triangle(1) == [[1], [1, 1]]
 
 
-def create_coefficients(split_row, first=None):
-    """Returns the one half of the coefficients of pascals triangle for the next row.
-    """
-    if first == None:
-        first = []
+def test_fifth_order():
+    assert pascals_triangle(5) == [[1], [1, 1], [1,2,1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1]]
 
-    # BASE CASE list = [1]
-    if split_row == [1]:
-        return split_row + first[::-1]
-    else:
-        first.append(split_row[-2] + split_row[-1])
-        split_row = split_row[:-1]
-        return create_coefficients(split_row, first)
-
-
-def test_creates_half_of_next_row():
-    assert create_coefficients([1, 3], None) == [1, 4]
-    assert create_coefficients([1, 5, 10], None) == [1, 6, 15]
-    assert create_coefficients([1, 6, 15, 20], None) == [1, 7, 21, 35]
-
-
-def get_middle(_list):
-    """Returns the middle value if length of list is odd or values if the length of the list is an even."""
-    l = len(_list)
-
-    if l % 2 == 0:
-        m1 = int(l / 2)
-        return [m1 - 1, m1]
-    else:
-        return [int(l / 2 - 0.5)]
-
-
-def test_get_middle_even():
-    assert get_middle([1, 9, 9, 1]) == [1, 2]
-    assert get_middle([1, 10, 1]) == [1]
 
 # Coefficients of binomial expansion
