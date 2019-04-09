@@ -1,8 +1,4 @@
 import numpy as np
-import sys
-sys.path.append('../../')
-import visualization
-
 
 def cross_entropy(activated_output_layer, output_layer):
     """Computes the cross-entropy cost for each layer."""

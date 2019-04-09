@@ -10,7 +10,7 @@ def nCr(n, r):
         n (int) : The number of events
         r (int) : The number of outcomes of the event
     Returns:
-         int : the number of combinations of that event occurring within the sample space
+        int : the number of combinations of that event occurring within the sample space
 
     """
     return int(np.math.factorial(n) / (np.math.factorial(r) * np.math.factorial(n - r)))
@@ -56,6 +56,3 @@ def test_first_order():
 
 def test_fifth_order():
     assert pascals_triangle(5) == [[1], [1, 1], [1,2,1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1]]
-
-
-# Coefficients of binomial expansion
