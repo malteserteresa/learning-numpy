@@ -1,4 +1,4 @@
-from binomial_expansion import nCr
+from binomial.binomial_expansion import nCr
 
 def probability_density(p, r, n):
     """Probability density of binomial distribution.
