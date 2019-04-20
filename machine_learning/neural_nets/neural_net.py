@@ -143,27 +143,8 @@ def backward_propagation(calculations, parameters, input_layer, output_layer, si
     return {"dW1": dW1, "db1": db1, "dW2": dW2, "db2": db2}
 
 
-def test_backward_propagation():
-    calculations = setUp(size, n_input_nodes)
-    backward_propagation()
-
-    assert calculations['Z1'].shape == (n_hidden_nodes, size)
-    assert calculations['A1'].shape == (n_hidden_nodes, size)
-    assert calculations['Z2'].shape == (n_hidden_nodes, size)
-    assert calculations['A2'].shape == (n_hidden_nodes, size)
-
-
-def test_not_null():
-    calculations = setUp(size, n_input_nodes)
-
-    assert np.all(calculations['Z1'] != 0)
-    assert np.all(calculations['A1'] != 0)
-    assert np.all(calculations['Z2'] != 0)
-    assert np.all(calculations['A2'] != 0)
-
-
 def update_parameters(parameters, gradients):
-    """
+    """Returns the updated parameters after multiplying them by the gradients and learning rate.
     """
 
     W1 = parameters['W1']
