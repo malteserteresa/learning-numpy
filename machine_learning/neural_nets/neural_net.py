@@ -4,10 +4,10 @@ from cross_entropy_cost import compute_cost
 from sigmoid import sigmoid
 
 size = 300
+learning_rate = 0.01
 n_input_nodes = 2
 n_hidden_nodes = 4
 n_output_nodes = 1
-learning_rate = 0.01
 
 
 def generate_data(size, nodes_input):
@@ -98,8 +98,7 @@ def feed_forward(parameters, input_layer):
 
 
 def setUp(size, n_input_nodes):
-    """Returns the weights and biases to begin their journey in the neural network.
-    """
+    """Returns the weights and biases to begin their journey in the neural network."""
     X, Y = generate_data(size, n_input_nodes)
     parameters = initialize_weights_and_biases(n_input_nodes, n_hidden_nodes, n_output_nodes)
     return feed_forward(parameters, X)
@@ -124,8 +123,7 @@ def test_feed_forward_not_null():
 
 
 def backward_propagation(calculations, parameters, input_layer, output_layer, size):
-    """Returns the results of gradient steepest decent.
-    """
+    """Returns the results of gradient steepest decent."""
 
     A1 = calculations['A1']
     A2 = calculations['A2']
@@ -144,8 +142,7 @@ def backward_propagation(calculations, parameters, input_layer, output_layer, si
 
 
 def update_parameters(parameters, gradients):
-    """Returns the updated parameters after multiplying them by the gradients and learning rate.
-    """
+    """Returns the updated parameters after multiplying them by the gradients and learning rate."""
 
     W1 = parameters['W1']
     b1 = parameters['b1']
@@ -170,20 +167,17 @@ parameters = initialize_weights_and_biases(n_input_nodes, n_hidden_nodes, n_outp
 input_layer = generate_data(size, n_input_nodes)[0]
 output_layer = generate_data(size, n_input_nodes)[1]
 
-n_iterations = 1
+n_iterations = 10000
 
 for i in range(0, n_iterations):
 
     calculations = feed_forward(parameters, input_layer)
-    print(calculations['A2'])
 
     cost = compute_cost(calculations['A2'], output_layer, size)
 
     gradients = backward_propagation(calculations, parameters, input_layer, output_layer, size)
 
-    update_parameters(parameters, gradients)
+    parameters = update_parameters(parameters, gradients)
 
-    if i % 100 == 0:
+    if i % 1000 == 0:
         print("Cost after iteration %i: %f" % (i, cost))
-
-
