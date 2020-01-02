@@ -12,3 +12,5 @@ def b(n, p, x):
     """
 
     return nCx(n, x) * p ** x * (1 - p) ** (n - x)
+
+
