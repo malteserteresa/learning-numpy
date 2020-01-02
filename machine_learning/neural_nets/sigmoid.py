@@ -13,3 +13,4 @@ def test_max():
 
 def test_min():
     assert round(sigmoid(-6, False)) == 0
+
